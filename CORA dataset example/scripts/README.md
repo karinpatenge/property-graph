@@ -9,5 +9,5 @@ Steps to follow:
   * Create the tables for the CORA data set
   * Load the data into the tables
 2. Login to OCI and start Graph Studio for your Autonomous Database instance
-  * Import the notebook in folder graph-studio
-  * Import the template
+  * Import the Graph Studio visualization template for the CORA graph located in folder graph-studio
+  * Import the CORA notebook located in folder graph-studio
