@@ -1,7 +1,7 @@
 -------------------
 --  Clean up tables
 -------------------
-drop table cora_cites purge
+drop table bank_txns purge
 /
-drop table cora_contents purge
+drop table bank_accounts purge
 /

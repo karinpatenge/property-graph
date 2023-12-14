@@ -1,5 +1,5 @@
 --------------------------------------------
--- Connect to your Oracle Database instance 
+-- Connect to your Oracle Database instance
 -- using sqlcl with your DB user credentials
 --------------------------------------------
 
@@ -7,7 +7,7 @@ set loadformat csv
 
 -- Import data using LOAD
 load table cora_cites CORA_CITES_DATA_TABLE.csv
-load table cora_content CORA_CONTENT_DATA_TABLE.csv
+load table cora_contents CORA_CONTENTS_DATA_TABLE.csv
 
 /* Expected result:
 
@@ -29,7 +29,7 @@ skip_after_names
 #INFO Last row processed in final committed batch: 5.429
 SUCCESS: Processed without errors
 
-Load data into table CORAUSER.CORA_CONTENT
+Load data into table CORAUSER.CORA_CONTENTS
 
 csv
 column_names on
