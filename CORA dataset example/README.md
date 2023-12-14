@@ -5,11 +5,11 @@ Check out [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/), if you d
 
 Steps to follow:
 
-1. Run the scripts located in folder [scripts](https://github.com/karinpatenge/property-graph/tree/main/CORA%20dataset%20example/scripts) to
+1. Run the scripts located in folder [scripts](https://github.com/karinpatenge/property-graph/tree/main/CORA%20dataset%20example/scripts/database) to
 
-    * Create a database user in your Autonomous Database
-    * Create the tables for the CORA data set
-    * Load the data into the tables
+    * [Create a database user](https://github.com/karinpatenge/property-graph/blob/main/CORA%20dataset%20example/scripts/database/00_create_database_user.sql) in your Autonomous Database
+    * [Create the tables](https://github.com/karinpatenge/property-graph/blob/main/CORA%20dataset%20example/scripts/database/01_create_data_set_tables.sql) for the CORA data set
+    * [Load the data](https://github.com/karinpatenge/property-graph/blob/main/CORA%20dataset%20example/scripts/database/02_load_modified_data_set.sql) into the tables
 
 2. Login to OCI and start Graph Studio for your Autonomous Database instance
 
