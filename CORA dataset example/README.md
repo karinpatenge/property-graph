@@ -1,6 +1,7 @@
 # General information
 
 The demo is designed to be used with an Oracle Autonomous Database that includes [Graph Studio](https://www.oracle.com/database/graph/graph-faq/).
+Check out [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/), if you don´t have access to an Autonomous Database yet. It includes two Oracle Autonomous Databases with powerful tools like Oracle APEX, Oracle SQL Developer Web, Graph Studio or Machine Learning.
 
 Steps to follow:
 
