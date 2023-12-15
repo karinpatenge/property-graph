@@ -1,6 +1,7 @@
 # General information
 
-The demo is designed to be used with any Oracle Database instance running on-premise or in the cloud. The minimum required Database version is 12.2.  
+The demo is designed to be used with any Oracle Database instance running on-premise or in the cloud. The minimum required Database version is 12.2.
+
 It assumes, you have SQLcl installed locally to access your database instance. If not, please follow the steps described [here] to download and install:
 
 * SQLcl
