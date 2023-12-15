@@ -4,7 +4,7 @@
 create table bank_accounts (
     acct_id number(10),
     name varchar2(100),
-    is_fraud number(1)
+	balance number(13,2)
 )
 /
 
@@ -24,12 +24,12 @@ alter table bank_accounts add constraint bank_accounts_pk primary key (acct_id)
 --  Create table BANK_TXNS
 --------------------------------------------------------
 create table bank_txns (
-	txn_id number(10),
+	txn_id number(10) generated always as identity,
 	from_acct_id number(10),
 	to_acct_id number(10),
-	description varchar2(100),
+	txn_date timestamp,
 	amount number(13,2),
-	txn_date date
+	currency varchar2(3)
 )
 /
 
