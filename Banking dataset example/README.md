@@ -1,8 +1,9 @@
 # General information
 
-The demo is designed for any Oracle Database instance on-premises or in the cloud. The minimum required Database version is 12.2.
+The demo is designed for any Oracle Database instance on-premises or in the cloud. The minimum required Oracle Database version is 12.2.
 
 It assumes you have SQLcl installed locally to access your database instance.
+
 To query graphs using SQLcl, you additionally need a plugin that translates the [PGQL](https://pgql-lang.org/spec/latest/) statements into SQL. PGQL is the abbreviation for Property Graph Query language. It is built on top of SQL, bringing graph pattern-matching capabilities to existing SQL users and new users who are interested in graph technology but do not have a SQL background.
 
 * SQLcl

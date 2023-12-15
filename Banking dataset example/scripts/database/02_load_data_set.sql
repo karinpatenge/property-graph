@@ -68,7 +68,7 @@ CREATE TABLE GRAPHUSER.BANK_TXNS_TEMP
 SUCCESS: Processed without errors
 */
 
--- Move data from BANK_TXNS_TEMP table into BANK_TxNS
+-- Copy data from BANK_TXNS_TEMP into BANK_TXNS
 insert into bank_txns (from_acct_id, to_acct_id, txn_date, amount, currency)(
     select from_acct_id, to_acct_id, txn_date, amount, currency from bank_txns_temp);
 
