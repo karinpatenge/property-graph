@@ -4,7 +4,10 @@ The demo is designed to be used with any Oracle Database instance running on-pre
 It assumes, you have SQLcl installed locally to access your database instance. If not, please follow the steps described [here] to download and install:
 
 * SQLcl
+    * [Download page](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/)
+    * [Installation instructions](https://docs.oracle.com/en/database/oracle/apex/23.1/aeadm/downloading-and-installing-sqlcl.html)
 * PGQL plugin for SQLcl
+    * [Instructions for download and installation](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/23.3/sqcug/using-pgql-plug-sqlcl.html)
 
 Then run the scripts located in folder [scripts](https://github.com/karinpatenge/property-graph/tree/main/Banking%20dataset%20example/scripts/database) to:
 
