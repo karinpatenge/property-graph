@@ -12,6 +12,7 @@
 --------------------------------------------
 
 set loadformat csv
+set load locale American America
 
 -- Import data using LOAD
 load table bank_accounts BANK_ACCOUNTS.csv
