@@ -1,0 +1,16 @@
+--------------------------------------------------------
+-- Query the graph using PGQL and
+-- the new GRAPH_TABLE operator
+--------------------------------------------------------
+
+--------------------------------------------------------
+-- Query 1
+--------------------------------------------------------
+SELECT src_account, dst_account, txn_amount, txn_date
+FROM GRAPH_TABLE (
+  bank_graph
+  MATCH (a IS account)-[t IS transfers]-(b IS account)
+  COLUMNS (a.acct_id as src_account, b.acct_id as dst_account, t.amount as txn_amount, t.txn_date as txn_date)
+);
+
+

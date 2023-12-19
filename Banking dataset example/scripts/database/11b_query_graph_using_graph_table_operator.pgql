@@ -1,0 +1,23 @@
+--------------------------------------------------------
+-- Query the graph using PGQL and
+--   the MATCH clause
+--------------------------------------------------------
+
+--------------------------------------------------------
+-- Query 0: List all graphs in the current schema.
+--------------------------------------------------------
+SELECT g.graph_name
+FROM MATCH (g:property_graph) ON property_graph_metadata
+ORDER BY g.graph_name;
+
+--------------------------------------------------------
+-- Query 1: List all transactions between two accounts.
+-- Limit the result set to 10.
+--------------------------------------------------------
+SELECT
+  a.acct_id as src_account,
+  b.acct_id as dst_account,
+  t.amount as txn_amount,
+  t.txn_date as txn_date
+FROM MATCH (a IS account)-[t IS transfers]->(b IS account) ON bank_graph
+LIMIT 10;
