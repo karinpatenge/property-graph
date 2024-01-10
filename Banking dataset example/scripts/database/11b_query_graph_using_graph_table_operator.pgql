@@ -1,23 +1,23 @@
---------------------------------------------------------
--- Query the graph using PGQL and
---   the MATCH clause
---------------------------------------------------------
+----------------------------------------------------------------
+-- Query the graph using PGQL using the new GRAPH_TABLE operator
+----------------------------------------------------------------
 
---------------------------------------------------------
--- Query 0: List all graphs in the current schema.
---------------------------------------------------------
-SELECT g.graph_name
-FROM MATCH (g:property_graph) ON property_graph_metadata
-ORDER BY g.graph_name;
+----------------------------------------------------------
+-- Query the Property Graph metadata
+----------------------------------------------------------
 
---------------------------------------------------------
--- Query 1: List all transactions between two accounts.
--- Limit the result set to 10.
---------------------------------------------------------
-SELECT
-  a.acct_id as src_account,
-  b.acct_id as dst_account,
-  t.amount as txn_amount,
-  t.txn_date as txn_date
-FROM MATCH (a IS account)-[t IS transfers]->(b IS account) ON bank_graph
-LIMIT 10;
+
+----------------------------------------------------------
+-- Query 1: List 10 transactions between two accounts 
+--          that are directly connected via a transaction.
+--          Example of fixed-length path query
+-----------------------------------------------------------
+
+
+----------------------------------------------------------
+-- Query 2: List all direct and indirect transactions 
+--          between two accounts 
+--          starting from a defined account
+--          with a maxiumum hop distance of 6.
+--          Example of variable-length path query
+-----------------------------------------------------------
