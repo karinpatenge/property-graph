@@ -17,4 +17,4 @@ CREATE PROPERTY GRAPH bank_graph
       LABEL transfers
       PROPERTIES ( txn_id, from_acct_id, to_acct_id, amount, txn_date )
   )
-  OPTIONS (PG_VIEW);
+  OPTIONS (PG_PGQL);
