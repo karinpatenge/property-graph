@@ -8,16 +8,16 @@
 
 
 ----------------------------------------------------------
--- Query 1: List 10 transactions between two accounts 
+-- Query 1: List 10 transactions between two accounts
 --          that are directly connected via a transaction.
 --          Example of fixed-length path query
 -----------------------------------------------------------
 
 
 ----------------------------------------------------------
--- Query 2: List all direct and indirect transactions 
---          between two accounts 
+-- Query 2: List all direct and indirect transactions
+--          between two accounts
 --          starting from a defined account
---          with a maxiumum hop distance of 6.
+--          with a maximum hop distance of 6.
 --          Example of variable-length path query
 -----------------------------------------------------------
