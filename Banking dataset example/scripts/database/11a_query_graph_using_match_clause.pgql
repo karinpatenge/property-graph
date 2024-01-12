@@ -5,12 +5,12 @@
 ----------------------------------------------------------
 -- Query the Property Graph metadata
 ----------------------------------------------------------
-SELECT g.graph_name
+SELECT g.*
 FROM MATCH (g IS property_graph) ON property_graph_metadata
 ORDER BY g.graph_name;
 
 ----------------------------------------------------------
--- Query 1: List 10 transactions between two accounts 
+-- Query 1: List 10 transactions between two accounts
 --          that are directly connected via a transaction.
 --          Example of fixed-length path query
 -----------------------------------------------------------
@@ -24,8 +24,8 @@ ORDER BY src_account, dst_account, txn_date
 LIMIT 10;
 
 ----------------------------------------------------------
--- Query 2: List all direct and indirect transactions 
---          between two accounts 
+-- Query 2: List all direct and indirect transactions
+--          between two accounts
 --          starting from a defined account
 --          with a maxiumum hop distance of 6.
 --          Example of variable-length path query
@@ -41,3 +41,40 @@ WHERE
   src_account <> dst_account
 ORDER BY total_amount DESC, dst_account
 LIMIT 10;
+
+
+---------------------------------------------------------------
+-- Query 3a: Find any shortest path from account n to account m
+---------------------------------------------------------------
+SELECT
+  COUNT(t) AS num_hops,
+  a1.acct_id AS src_account,
+  LISTAGG(b.acct_id, ' -> ' ) AS path_to_dst_account
+FROM MATCH ANY SHORTEST (a1 IS account) (-[t IS transfers]- (b IS account))* (a2 IS account) ON bank_graph
+WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
+ORDER BY num_hops;
+
+------------------------------------------------------------------
+-- Query 3b: Find the shortest 3 paths from account n to account m
+------------------------------------------------------------------
+SELECT
+  COUNT(t) AS num_hops,
+  a1.acct_id AS src_account,
+  LISTAGG(b.acct_id, ' -> ' ) AS path_to_dst_account
+FROM MATCH SHORTEST 3 (a1 IS account) (-[t IS transfers]- (b IS account))* (a2 IS account) ON bank_graph
+WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
+ORDER BY num_hops;
+
+--------------------------------------------------------
+-- Query 4: Find the shortest 10 circular payment chains
+--------------------------------------------------------
+SELECT
+  COUNT(t) AS num_hops,
+  a.acct_id AS account,
+  LISTAGG(b.acct_id, ' -> ' ) AS circular_payment_chain
+FROM MATCH SHORTEST 10 (a IS account) (-[t IS transfers]- (b IS account))* (a) ON bank_graph
+ORDER BY num_hops, account;
+
+
+-- Check Supported PGQL Features and Limitations for PGQL Property Graphs
+-- https://docs.oracle.com/en/database/oracle/property-graph/23.4/spgdg/executing-pgql-queries-pgql-property-graphs.html#GUID-3C6D938A-D165-443E-8433-143D901E235C
