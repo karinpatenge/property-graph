@@ -2,6 +2,8 @@
 -- Create the graph model as a view on TABLES
 -- BANK_ACCOUNTS and BANK_TXNS
 --------------------------------------------------------
+DROP PROPERTY GRAPH bank_graph;
+
 CREATE PROPERTY GRAPH bank_graph
   VERTEX TABLES (
     bank_accounts
