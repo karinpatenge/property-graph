@@ -25,8 +25,7 @@ LIMIT 10;
 
 ----------------------------------------------------------
 -- Query 2: List all direct and indirect transactions
---          between two accounts
---          starting from a defined account
+--          between account a and b
 --          with a maxiumum hop distance of 6.
 --          Example of variable-length path query
 -----------------------------------------------------------
@@ -42,10 +41,9 @@ WHERE
 ORDER BY total_amount DESC, dst_account
 LIMIT 10;
 
-
----------------------------------------------------------------
--- Query 3a: Find any shortest path from account n to account m
----------------------------------------------------------------
+-----------------------------------------------------------------
+-- Query 3a: Find any shortest path from account a1 to account a2
+-----------------------------------------------------------------
 SELECT
   COUNT(t) AS num_hops,
   a1.acct_id AS src_account,
@@ -54,9 +52,9 @@ FROM MATCH ANY SHORTEST (a1 IS account) (-[t IS transfers]- (b IS account))* (a2
 WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
 ORDER BY num_hops;
 
-------------------------------------------------------------------
--- Query 3b: Find the shortest 3 paths from account n to account m
-------------------------------------------------------------------
+--------------------------------------------------------------------
+-- Query 3b: Find the shortest 3 paths from account a1 to account a2
+--------------------------------------------------------------------
 SELECT
   COUNT(t) AS num_hops,
   a1.acct_id AS src_account,
@@ -65,15 +63,16 @@ FROM MATCH SHORTEST 3 (a1 IS account) (-[t IS transfers]- (b IS account))* (a2 I
 WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
 ORDER BY num_hops;
 
---------------------------------------------------------
--- Query 4: Find the shortest 10 circular payment chains
---------------------------------------------------------
+----------------------------------------------------------------------
+-- Query 4: Find the shortest 10 circular payment chains for account a
+----------------------------------------------------------------------
 SELECT
   COUNT(t) AS num_hops,
   a.acct_id AS account,
   LISTAGG(b.acct_id, ' -> ' ) AS circular_payment_chain
 FROM MATCH SHORTEST 10 (a IS account) (-[t IS transfers]- (b IS account))* (a) ON bank_graph
-ORDER BY num_hops, account;
+WHERE a.acct_id = 4877749745 and num_hops > 0
+ORDER BY num_hops;
 
 
 -- Check Supported PGQL Features and Limitations for PGQL Property Graphs
