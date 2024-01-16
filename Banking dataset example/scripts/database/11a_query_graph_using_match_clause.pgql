@@ -48,7 +48,7 @@ SELECT
   COUNT(t) AS num_hops,
   a1.acct_id AS src_account,
   LISTAGG(b.acct_id, ' -> ' ) AS path_to_dst_account
-FROM MATCH ANY SHORTEST (a1 IS account) (-[t IS transfers]- (b IS account))* (a2 IS account) ON bank_graph
+FROM MATCH ANY SHORTEST (a1 IS account) (-[t IS transfers]-> (b IS account))* (a2 IS account) ON bank_graph
 WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
 ORDER BY num_hops;
 
@@ -59,7 +59,7 @@ SELECT
   COUNT(t) AS num_hops,
   a1.acct_id AS src_account,
   LISTAGG(b.acct_id, ' -> ' ) AS path_to_dst_account
-FROM MATCH SHORTEST 3 (a1 IS account) (-[t IS transfers]- (b IS account))* (a2 IS account) ON bank_graph
+FROM MATCH SHORTEST 3 (a1 IS account) (-[t IS transfers]-> (b IS account))* (a2 IS account) ON bank_graph
 WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
 ORDER BY num_hops;
 
@@ -70,9 +70,18 @@ SELECT
   COUNT(t) AS num_hops,
   a.acct_id AS account,
   LISTAGG(b.acct_id, ' -> ' ) AS circular_payment_chain
-FROM MATCH SHORTEST 10 (a IS account) (-[t IS transfers]- (b IS account))* (a) ON bank_graph
-WHERE a.acct_id = 4877749745 and num_hops > 0
-ORDER BY num_hops;
+FROM MATCH ALL (a IS account) (-[t IS transfers]-> (b IS account)){1,5} (a) ON bank_graph
+WHERE a.acct_id = 4877749745
+ORDER BY num_hops, circular_payment_chain
+LIMIT 10;
+
+-------------------------------------------------------------------------------
+-- Query 5: List all accounts connected to a given account via a money transfer
+--          Used with Oracle Graph Visualization application
+-------------------------------------------------------------------------------
+SELECT *
+FROM MATCH (a)-[t]->(b) ON bank_graph
+WHERE a.acct_id = 4877749745;
 
 
 -- Check Supported PGQL Features and Limitations for PGQL Property Graphs
