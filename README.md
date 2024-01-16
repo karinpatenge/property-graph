@@ -1,11 +1,11 @@
 # Property Graphs
 
-This repository contains my **personal** sample scripts and sample data related to Oracle Property Graph.  
-You can find both in their respective subfolders
+This repository contains my **personal** sample scripts and sample data related to Oracle Property Graph.
+You can find both in their respective subfolders.
 
-  * [Banking dataset example](https://github.com/karinpatenge/property-graph/blob/main/OPENFLIGHTS dataset example)
-  * [CORA dataset example](https://github.com/karinpatenge/property-graph/blob/main/CORA dataset example)
-  * [OPENFLIGHTS dataset example](https://github.com/karinpatenge/property-graph/blob/main/OPENFLIGHTS dataset example)
+* [Banking dataset example](/OPENFLIGHTS_dataset_example)
+* [CORA dataset example](/CORA_dataset_example)
+* [OPENFLIGHTS dataset example](/OPENFLIGHTS_dataset_example)
 
 The Property Graph feature of Oracle Database offers powerful graph support for Oracle database, to explore and discover complex relationships in data sets such as customer data, social networks, and financial transactions, for applications in product recommendation, fraud detection, risk analysis, targeted marketing, and more.
 
