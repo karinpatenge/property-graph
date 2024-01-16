@@ -12,8 +12,8 @@ To query graphs using SQLcl, you additionally need a plugin that translates the 
 * PGQL plugin for SQLcl
     * [Instructions for download and installation](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/23.3/sqcug/using-pgql-plug-sqlcl.html)
 
-Then run the scripts located in folder [scripts](https://github.com/karinpatenge/property-graph/tree/main/Banking%20dataset%20example/scripts/database) to:
+Then run the scripts located in folder [scripts](scripts/database) to:
 
-* [Create a database user](https://github.com/karinpatenge/property-graph/blob/main/Banking%20dataset%20example/scripts/database/00_create_database_user.sql) in your database instance
-* [Create the tables](https://github.com/karinpatenge/property-graph/blob/main/Banking%20dataset%20example/scripts/database/01_create_data_set_tables.sql) for the Banking data set
-* [Load the data](https://github.com/karinpatenge/property-graph/blob/main/Banking%20dataset%20example/scripts/database/02_load_data_set.sql) into the tables
+* [Create a database user](scripts/database/00_create_database_user.sql) in your database instance
+* [Create the tables](scripts/database/01_create_data_set_tables.sql) for the Banking data set
+* [Load the data](scripts/database/02_load_data_set.sql) into the tables
