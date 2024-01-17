@@ -21,7 +21,7 @@ alter table openflights_airports add constraint openflights_airports_pk primary 
 alter table openflights_cities add constraint openflights_cities_pk primary key (id);
 alter table openflights_routes add constraint openflights_routes_pk primary key (id);
 
--- Check, if there references to airports missing
+-- Check, if there are references to airports missing
 select * from openflights_routes r
 where
     r.src_airport_id not in (select id from openflights_airports) or

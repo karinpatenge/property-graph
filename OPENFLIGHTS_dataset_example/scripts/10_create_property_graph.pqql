@@ -1,8 +1,16 @@
 --------------------------------------------------------
 --  Create Property Graph view of the OPENFLIGHTS tables
 --------------------------------------------------------
+
+-- Use SQLcl to connect to your database instance with your graphuser
+
+-- Turn PGQL mode on
+pgql auto on
+
+-- Drop the graph if it exists already
 drop property graph openflights_graph;
 
+-- Create the graph
 create property graph openflights_graph
     vertex tables (
         openflights_airports as airports
