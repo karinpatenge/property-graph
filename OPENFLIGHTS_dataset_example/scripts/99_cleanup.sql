@@ -1,7 +1,8 @@
--- Drop graphs
-DROP PROPERTY GRAPH openflights_graph;
+------------------------------
+-- Clean up OPENFLIGHTS tables
+------------------------------
 
 -- Drop tables
-DROP TABLE OPENFLIGHTS_ROUTES;
-DROP TABLE OPENFLIGHTS_AIRPORTS;
-DROP TABLE OPENFLIGHTS_CITIES;
+drop table openflights_routes drop storage;
+drop table openflights_airports drop storage;
+drop table openflights_cities drop storage;
