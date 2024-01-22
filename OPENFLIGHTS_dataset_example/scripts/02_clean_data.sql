@@ -23,6 +23,7 @@ having count(*) > 1;
 
 -- If so, remove the duplicate rows first
 delete from openflights_airports
+where rowid not in (
   select min(rowid)
   from   openflights_airports
   group  by id
