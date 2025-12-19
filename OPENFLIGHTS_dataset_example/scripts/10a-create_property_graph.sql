@@ -14,23 +14,23 @@ create property graph if not exists openflights_graph
       key ( id )
       label airport
       properties (
-          name,
-          iata,
-          icao,
-          airport_type,
-          longitude,
-          latitude,
-          altitude,
-          timezone,
-          tzdbtime,
-          dst
+        name,
+        iata,
+        icao,
+        airport_type,
+        longitude,
+        latitude,
+        altitude,
+        timezone,
+        tzdbtime,
+        dst
       ),
     openflights_cities as cities
       key ( id )
       label city
       properties (
-          city,
-          country
+        city,
+        country
       )
   )
   edge tables (
