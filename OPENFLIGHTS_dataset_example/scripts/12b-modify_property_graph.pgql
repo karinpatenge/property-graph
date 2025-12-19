@@ -1,0 +1,32 @@
+----------------------------------------------
+--  Modify the OPENFLIGHTS PGQL Property Graph
+----------------------------------------------
+
+-- Use SQLcl to connect to your database instance with your graphuser
+
+-- Turn PGQL mode on
+pgql auto on
+
+
+-- Insert vertices
+
+insert into openflights_graph
+  vertex c
+  labels ( city )
+  properties (
+    c.id = 100000,
+    c.city = 'Fantasie',
+    c.country = 'DE'
+  );
+
+-- Check result:
+select
+  c.city,
+  c.country,
+  c.id
+from
+  match (c is city)
+  on openflights_graph
+where
+  c.id > 10000;
+
