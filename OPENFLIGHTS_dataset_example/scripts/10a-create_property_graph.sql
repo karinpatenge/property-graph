@@ -50,5 +50,4 @@ create property graph if not exists openflights_graph
             destination key ( city_id ) references cities (id)
             label located_in
             no properties
-    )
-options (PG_SQL);
+    );

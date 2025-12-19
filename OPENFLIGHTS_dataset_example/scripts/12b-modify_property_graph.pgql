@@ -29,4 +29,3 @@ from
   on openflights_graph
 where
   c.id > 10000;
-
