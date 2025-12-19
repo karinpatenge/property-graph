@@ -43,6 +43,24 @@ FROM GRAPH_TABLE (
 )
 ORDER BY airline;
 
+SELECT  -- Airports that can be reached directly from NUE
+  destination_iata,
+  dist,
+  airline
+FROM GRAPH_TABLE (
+  openflights_graph
+  MATCH (a IS airport) -[r IS route]-> (d IS airport)
+  WHERE a.iata='NUE'
+  COLUMNS (
+    d.iata AS destination_iata,
+    r.distance_in_km AS dist,
+    r.airline_id AS airline
+  )
+)
+ORDER BY
+  destination_iata,
+  airline;
+
 SELECT COUNT(DISTINCT(iata))
 FROM GRAPH_TABLE (
   openflights_graph
