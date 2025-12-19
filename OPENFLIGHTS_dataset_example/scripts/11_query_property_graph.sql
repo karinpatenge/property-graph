@@ -1,6 +1,6 @@
 SELECT src, dst, city, route, located_in 
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (v1) -[e1]-> (v2) -[e2 IS located_in]-> (v3)
   COLUMNS (
     vertex_id(v1) AS src,
@@ -13,7 +13,7 @@ FETCH FIRST 20 ROWS ONLY;
 
 SELECT * 
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (a IS airport) -> (c IS city)
   WHERE c.city='Nuernberg' AND c.country='Germany'
   COLUMNS (a.iata, a.name)
@@ -21,7 +21,7 @@ FROM GRAPH_TABLE (
 
 SELECT * 
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (a IS airport) -[r IS route]-> (d IS airport)
   WHERE a.iata='NUE' AND d.iata='TXL'
   COLUMNS (r.airline AS airline)
@@ -30,7 +30,7 @@ ORDER BY airline;
 
 SELECT DISTINCT airline 
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (a IS airport) -[r IS route]- (d IS airport)
   WHERE a.iata='NUE' AND d.iata='TXL'
   COLUMNS (r.airline AS airline)
@@ -39,7 +39,7 @@ ORDER BY airline;
 
 SELECT COUNT(DISTINCT(iata)) 
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (a IS airport) -[r IS route]->{2} (d IS airport)
   WHERE  a.iata='NUE' AND a.iata <> d.iata
   COLUMNS (d.iata)
@@ -47,7 +47,7 @@ FROM GRAPH_TABLE (
 
 SELECT *
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (a IS airport) -[r IS route]->{1,2} (d IS airport)
   WHERE a.iata='NUE' AND d.iata <> 'NUE'
   ONE ROW PER STEP (v1, k, v2)
@@ -60,7 +60,7 @@ FROM GRAPH_TABLE (
 
 SELECT *
 FROM GRAPH_TABLE (
-  flights_graph
+  openflights_graph
   MATCH (a IS airport) -[r IS route]->{1,2} (d IS airport)
   WHERE a.iata='NUE' AND d.iata <> 'NUE'
   ONE ROW PER STEP (v1, k, v2)
