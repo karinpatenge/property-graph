@@ -1,3 +1,13 @@
+---------------------------------------------
+--  Query the OPENFLIGHTS PGQL Property Graph
+---------------------------------------------
+
+-- Use SQLcl to connect to your database instance with your graphuser
+
+-- Turn PGQL mode on
+pgql auto on;
+
+
 SELECT src, dst, city, route, located_in
 FROM GRAPH_TABLE (
   openflights_graph
