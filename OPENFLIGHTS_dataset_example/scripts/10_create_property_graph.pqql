@@ -1,6 +1,6 @@
---------------------------------------------------------
---  Create Property Graph view of the OPENFLIGHTS tables
---------------------------------------------------------
+---------------------------------------------------------
+--  Create PGQL Property Graph for the OPENFLIGHTS tables
+---------------------------------------------------------
 
 -- Use SQLcl to connect to your database instance with your graphuser
 
