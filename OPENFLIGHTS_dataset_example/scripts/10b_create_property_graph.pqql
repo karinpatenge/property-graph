@@ -2,7 +2,7 @@
 --  Create PGQL Property Graph for the OPENFLIGHTS tables
 ---------------------------------------------------------
 
--- Use SQLcl to connect to your database instance with your graphuser
+-- Use SQLcl to connect to your database with your user
 
 -- Turn PGQL mode on
 pgql auto on
