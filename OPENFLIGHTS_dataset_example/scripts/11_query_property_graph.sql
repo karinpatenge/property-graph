@@ -1,4 +1,4 @@
-SELECT src, dst, city, route, located_in 
+SELECT src, dst, city, route, located_in
 FROM GRAPH_TABLE (
   openflights_graph
   MATCH (v1) -[e1]-> (v2) -[e2 IS located_in]-> (v3)
@@ -11,7 +11,7 @@ FROM GRAPH_TABLE (
 )
 FETCH FIRST 20 ROWS ONLY;
 
-SELECT * 
+SELECT *
 FROM GRAPH_TABLE (
   openflights_graph
   MATCH (a IS airport) -> (c IS city)
@@ -19,25 +19,25 @@ FROM GRAPH_TABLE (
   COLUMNS (a.iata, a.name)
 );
 
-SELECT * 
+SELECT *
 FROM GRAPH_TABLE (
   openflights_graph
   MATCH (a IS airport) -[r IS route]-> (d IS airport)
   WHERE a.iata='NUE' AND d.iata='TXL'
-  COLUMNS (r.airline AS airline)
+  COLUMNS (r.airline_id AS airline)
 )
 ORDER BY airline;
 
-SELECT DISTINCT airline 
+SELECT DISTINCT airline
 FROM GRAPH_TABLE (
   openflights_graph
   MATCH (a IS airport) -[r IS route]- (d IS airport)
   WHERE a.iata='NUE' AND d.iata='TXL'
-  COLUMNS (r.airline AS airline)
-) 
+  COLUMNS (r.airline_id AS airline)
+)
 ORDER BY airline;
 
-SELECT COUNT(DISTINCT(iata)) 
+SELECT COUNT(DISTINCT(iata))
 FROM GRAPH_TABLE (
   openflights_graph
   MATCH (a IS airport) -[r IS route]->{2} (d IS airport)
@@ -56,7 +56,8 @@ FROM GRAPH_TABLE (
     edge_id(k) AS id_k,
     vertex_id(v2) AS id_v2
   )
-);
+)
+FETCH FIRST 20 ROWS ONLY;
 
 SELECT *
 FROM GRAPH_TABLE (
@@ -69,6 +70,7 @@ FROM GRAPH_TABLE (
     ELEMENT_NUMBER(k) AS elemnum,
     v1.iata AS iata1,
     v2.iata AS iata2,
-    k.distance AS dist
+    k.distance_in_km AS dist
   )
-);
+)
+FETCH FIRST 20 ROWS ONLY;
