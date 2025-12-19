@@ -17,6 +17,7 @@ create property graph openflights_graph
             key ( id )
             label airport
             properties (
+                id,
                 name,
                 iata,
                 icao,
@@ -32,6 +33,7 @@ create property graph openflights_graph
             key ( id )
             label city
             properties (
+                id,
                 city,
                 country
             )
@@ -42,6 +44,7 @@ create property graph openflights_graph
             destination key ( dest_airport_id ) references airports (id) 
             label route
             properties (
+                id,
                 codeshare,
                 airline_id,
                 equipment,
