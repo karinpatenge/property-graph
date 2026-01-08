@@ -7,10 +7,9 @@
 -- Turn PGQL mode on
 pgql auto on
 
-
 -- Insert vertices
 
-insert into openflights_graph
+insert into openflights_graph_pgql
   vertex c
   labels ( city )
   properties (
@@ -26,6 +25,6 @@ select
   c.id
 from
   match (c is city)
-  on openflights_graph
+  on openflights_graph_pgql
 where
   c.id > 10000;
