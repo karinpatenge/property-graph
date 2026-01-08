@@ -19,7 +19,7 @@ SELECT
   b.acct_id as dst_account,
   t.amount as txn_amount,
   t.txn_date as txn_date
-FROM MATCH (a IS account)-[t IS transfers]->(b IS account) ON bank_graph
+FROM MATCH (a IS account)-[t IS transfers]->(b IS account) ON bank_graph_pgql
 ORDER BY src_account, dst_account, txn_date
 LIMIT 10;
 
@@ -34,7 +34,7 @@ SELECT
   b.acct_id AS dst_account,
   LISTAGG(t.amount, ' + ') || ' = ',
   SUM(t.amount) AS total_amount
-FROM MATCH ALL (a IS account) -[t IS transfers]->{,6} (b IS account) ONE ROW PER MATCH ON bank_graph
+FROM MATCH ALL (a IS account) -[t IS transfers]->{,6} (b IS account) ONE ROW PER MATCH ON bank_graph_pgql
 WHERE
   src_account = 831045 AND
   src_account <> dst_account
@@ -48,7 +48,7 @@ SELECT
   COUNT(t) AS num_hops,
   a1.acct_id AS src_account,
   LISTAGG(b.acct_id, ' -> ' ) AS path_to_dst_account
-FROM MATCH ANY SHORTEST (a1 IS account) (-[t IS transfers]-> (b IS account))* (a2 IS account) ON bank_graph
+FROM MATCH ANY SHORTEST (a1 IS account) (-[t IS transfers]-> (b IS account))* (a2 IS account) ON bank_graph_pgql
 WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
 ORDER BY num_hops;
 
@@ -59,7 +59,7 @@ SELECT
   COUNT(t) AS num_hops,
   a1.acct_id AS src_account,
   LISTAGG(b.acct_id, ' -> ' ) AS path_to_dst_account
-FROM MATCH SHORTEST 3 (a1 IS account) (-[t IS transfers]-> (b IS account))* (a2 IS account) ON bank_graph
+FROM MATCH SHORTEST 3 (a1 IS account) (-[t IS transfers]-> (b IS account))* (a2 IS account) ON bank_graph_pgql
 WHERE a1.acct_id = 831045 AND a2.acct_id = 4309466287
 ORDER BY num_hops;
 
@@ -70,7 +70,7 @@ SELECT
   COUNT(t) AS num_hops,
   a.acct_id AS account,
   LISTAGG(b.acct_id, ' -> ' ) AS circular_payment_chain
-FROM MATCH ALL (a IS account) (-[t IS transfers]-> (b IS account)){1,5} (a) ON bank_graph
+FROM MATCH ALL (a IS account) (-[t IS transfers]-> (b IS account)){1,5} (a) ON bank_graph_pgql
 WHERE a.acct_id = 4877749745
 ORDER BY num_hops, circular_payment_chain
 LIMIT 10;
@@ -80,9 +80,5 @@ LIMIT 10;
 --          Used with Oracle Graph Visualization application
 -------------------------------------------------------------------------------
 SELECT *
-FROM MATCH (a)-[t]->(b) ON bank_graph
+FROM MATCH (a)-[t]->(b) ON bank_graph_pgql
 WHERE a.acct_id = 4877749745;
-
-
--- Check Supported PGQL Features and Limitations for PGQL Property Graphs
--- https://docs.oracle.com/en/database/oracle/property-graph/23.4/spgdg/executing-pgql-queries-pgql-property-graphs.html#GUID-3C6D938A-D165-443E-8433-143D901E235C
